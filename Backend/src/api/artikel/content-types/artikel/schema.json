@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "artikels",
+  "info": {
+    "singularName": "artikel",
+    "pluralName": "artikels",
+    "displayName": "Artikel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Judul_Artikel": {
+      "type": "string"
+    },
+    "Deskripsi_Artikel": {
+      "type": "text"
+    },
+    "Gambar_Artikel": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Konten_Artikel": {
+      "type": "richtext"
+    },
+    "Judul_AtasArtikel": {
+      "type": "string"
+    },
+    "NamaPenulis_Artikel": {
+      "type": "string"
+    },
+    "GambarPenulis_Artikel": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

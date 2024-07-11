@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "halaman_depans",
+  "info": {
+    "singularName": "halaman-depan",
+    "pluralName": "halaman-depans",
+    "displayName": "HalamanDepan",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Judul": {
+      "type": "string"
+    },
+    "Gambar": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Deskripsi": {
+      "type": "richtext"
+    },
+    "CardJudul1": {
+      "type": "string"
+    },
+    "CardDeskripsi": {
+      "type": "richtext"
+    },
+    "CardJudul2": {
+      "type": "string"
+    },
+    "CardDeskripsi2": {
+      "type": "richtext"
+    },
+    "CardJudul3": {
+      "type": "string"
+    },
+    "CardDeskripsi3": {
+      "type": "richtext"
+    }
+  }
+}
