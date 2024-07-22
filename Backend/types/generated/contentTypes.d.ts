@@ -362,88 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiArtikelArtikel extends Schema.CollectionType {
-  collectionName: 'artikels';
-  info: {
-    singularName: 'artikel';
-    pluralName: 'artikels';
-    displayName: 'Artikel';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Judul_Artikel: Attribute.String;
-    Deskripsi_Artikel: Attribute.Text;
-    Gambar_Artikel: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    Konten_Artikel: Attribute.RichText;
-    Judul_AtasArtikel: Attribute.String;
-    NamaPenulis_Artikel: Attribute.String;
-    GambarPenulis_Artikel: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::artikel.artikel',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::artikel.artikel',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHalamanDepanHalamanDepan extends Schema.CollectionType {
-  collectionName: 'halaman_depans';
-  info: {
-    singularName: 'halaman-depan';
-    pluralName: 'halaman-depans';
-    displayName: 'HalamanDepan';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Judul: Attribute.String;
-    Gambar: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    Deskripsi: Attribute.RichText;
-    CardJudul1: Attribute.String;
-    CardDeskripsi: Attribute.RichText;
-    CardJudul2: Attribute.String;
-    CardDeskripsi2: Attribute.RichText;
-    CardJudul3: Attribute.String;
-    CardDeskripsi3: Attribute.RichText;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::halaman-depan.halaman-depan',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::halaman-depan.halaman-depan',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -870,6 +788,155 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiArtikelArtikel extends Schema.CollectionType {
+  collectionName: 'artikels';
+  info: {
+    singularName: 'artikel';
+    pluralName: 'artikels';
+    displayName: 'Artikel';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Judul_Artikel: Attribute.String;
+    Deskripsi_Artikel: Attribute.Text;
+    Gambar_Artikel: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    Konten_Artikel: Attribute.RichText;
+    Judul_AtasArtikel: Attribute.String;
+    NamaPenulis_Artikel: Attribute.String;
+    GambarPenulis_Artikel: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::artikel.artikel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::artikel.artikel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHalamanDepanHalamanDepan extends Schema.CollectionType {
+  collectionName: 'halaman_depans';
+  info: {
+    singularName: 'halaman-depan';
+    pluralName: 'halaman-depans';
+    displayName: 'HalamanDepan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Judul: Attribute.String;
+    Gambar: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Deskripsi: Attribute.RichText;
+    CardJudul1: Attribute.String;
+    CardDeskripsi: Attribute.RichText;
+    CardJudul2: Attribute.String;
+    CardDeskripsi2: Attribute.RichText;
+    CardJudul3: Attribute.String;
+    CardDeskripsi3: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::halaman-depan.halaman-depan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::halaman-depan.halaman-depan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJurusanJurusan extends Schema.CollectionType {
+  collectionName: 'jurusans';
+  info: {
+    singularName: 'jurusan';
+    pluralName: 'jurusans';
+    displayName: 'Jurusan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Judul_Jurusan: Attribute.String;
+    Deskripsi_Jurusan: Attribute.Text;
+    Gambar_Jurusan: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Text_Jurusan: Attribute.RichText;
+    Penulis_Artikel: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::jurusan.jurusan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::jurusan.jurusan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiQuotesQuotes extends Schema.CollectionType {
+  collectionName: 'quotess';
+  info: {
+    singularName: 'quotes';
+    pluralName: 'quotess';
+    displayName: 'Quotes';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Konten_Quotes: Attribute.Text;
+    Penulis_Quotes: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::quotes.quotes',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::quotes.quotes',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -880,8 +947,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::artikel.artikel': ApiArtikelArtikel;
-      'api::halaman-depan.halaman-depan': ApiHalamanDepanHalamanDepan;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -890,6 +955,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::artikel.artikel': ApiArtikelArtikel;
+      'api::halaman-depan.halaman-depan': ApiHalamanDepanHalamanDepan;
+      'api::jurusan.jurusan': ApiJurusanJurusan;
+      'api::quotes.quotes': ApiQuotesQuotes;
     }
   }
 }

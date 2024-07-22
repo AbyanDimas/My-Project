@@ -1,8 +1,16 @@
+/* src/styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Custom dark mode styles */
+.dark {
+  --bg-color: #1a202c;
+  --text-color: #f7fafc;
+  /* Add other custom properties as needed */
+}
+
 body {
-  background-color: #f2f2f2; 
-  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }

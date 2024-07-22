@@ -8,10 +8,14 @@ import Forms from "./Pages/Forms";
 import Gallery from "./Pages/Gallery/Gallery";
 import Blogs from "./Pages/Blogs";
 import ArticleDetails from "./Pages/ArticleDetails";
-import StatusPage from "./Components/Popups/StatusPage"; // Import StatusPage
-import Loading from "./Components/Other/Loading"; // Import Loading component
-import Error from "./Components/Other/Error"; // Import Error component
-import NotFound from "./Components/Other/NotFound"; // Import NotFound component
+import Jurusan from "./Pages/Jurusan/Jurusan";
+import JurusanDetail from './Pages/Jurusan/JurusanDetail';
+import StatusPage from "./Components/Popups/StatusPage";
+import FasilitasPage from "./Pages/Fasilitas/Fasilitas"; 
+import Profil from "./Pages/Profil/Profil";
+import Loading from "./Components/Other/Loading"; 
+import Error from "./Components/Other/Error"; 
+import NotFound from "./Components/Other/NotFound";
 
 export default function App() {
   let { loading, data, error } = useFetchData();
@@ -38,9 +42,13 @@ export default function App() {
             <Route path="/forms" element={<Forms />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/fasilitas" element={<FasilitasPage />} />
+            <Route path="/profil" element={<Profil />} />
+            <Route path="/Jurusan" element={<Jurusan />} />
+            <Route path="/jurusan/:id" element={<JurusanDetail />} />
             <Route path="/articles/:id" element={<ArticleDetails />} />
-            <Route path="/status" element={<StatusPage />} /> {/* Add StatusPage route */}
-            <Route path="*" element={<NotFound />} /> {/* Add NotFound route */}
+            <Route path="/status" element={<StatusPage />} /> 
+            <Route path="*" element={<NotFound />} /> 
           </Routes>
         </div>
       </div>

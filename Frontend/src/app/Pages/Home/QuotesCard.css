@@ -1,0 +1,29 @@
+/* QuotesCard.css */
+.quotes-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  .quotes-track {
+    display: flex;
+    width: calc(100% * 2); /* Mengatur lebar track agar dua set quotes muat */
+    animation: moveLeft 30s linear infinite;
+  }
+  
+  @keyframes moveLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .quotes-slide {
+    flex: 0 0 25%; /* Mengatur agar 4 card ditampilkan dalam satu baris */
+    box-sizing: border-box; /* Agar margin termasuk dalam lebar total */
+    padding: 0 16px; /* Jarak antar card */
+  }
+  

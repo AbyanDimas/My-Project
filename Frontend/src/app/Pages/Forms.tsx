@@ -1,110 +1,147 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import FormsActions from '../Components/Popups/FormsActions';
+import {
+  TextField,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Snackbar,
+  Alert,
+  InputAdornment,
+} from '@mui/material';
+import { Person, Email, Feedback } from '@mui/icons-material';
 
-const Forms: React.FC = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [suggestion, setSuggestion] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
-  const navigate = useNavigate();
+const Forms = () => {
+  const [open, setOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
 
-  const handlePopupSubmit = () => {
-    // Simulasikan pengiriman form
-    const isSuccess = Math.random() > 0.5; // Simulasikan berhasil/gagal
-
-    // Reset form
-    setName('');
-    setEmail('');
-    setSuggestion('');
-    setShowPopup(false);
-
-    // Navigasi ke halaman status
-    navigate('/status', { state: { status: isSuccess ? 'success' : 'failure' } });
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setShowPopup(true);
+  const handleClose = () => {
+    setOpen(false);
   };
 
-  const handleCancel = () => {
-    setName('');
-    setEmail('');
-    setSuggestion('');
-    setShowPopup(false);
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleConfirm = () => {
+    handleClose();
+    // Simulasi pengiriman data
+    setTimeout(() => {
+      const success = Math.random() > 0.5;
+      if (success) {
+        setSnackbarMessage('Saran berhasil dikirim!');
+        setSnackbarSeverity('success');
+      } else {
+        setSnackbarMessage('Pengiriman gagal, coba lagi nanti.');
+        setSnackbarSeverity('error');
+      }
+      setSnackbarOpen(true);
+    }, 1000);
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className="backdrop-blur-sm bg-white/30 rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden w-full max-w-4xl">
-        <div className="w-full md:w-1/2 h-64 md:h-auto">
-          <img
-            src="https://smkn1adw.sch.id/fp/sites/default/files/SLIDE%201.jpg"
-            alt="Sekolah"
-            className="object-cover h-full w-full"
-          />
-        </div>
-        <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-2xl font-bold mb-4">Kotak Saran</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                Nama
-              </label>
-              <input
-                id="name"
-                type="text"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="suggestion">
-                Saran
-              </label>
-              <textarea
-                id="suggestion"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={suggestion}
-                onChange={(e) => setSuggestion(e.target.value)}
-                required
-              />
-            </div>
-            <div className="flex justify-end space-x-2">
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="bg-red-500 text-white px-4 py-2 rounded"
-              >
-                Batalkan
-              </button>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Kirim
-              </button>
-            </div>
-          </form>
-        </div>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Kotak Saran</h2>
+        <form>
+          <div className="mb-4">
+            <TextField
+              label="Nama Anda"
+              variant="outlined"
+              fullWidth
+              required
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Person />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+          <div className="mb-4">
+            <TextField
+              label="Email"
+              variant="outlined"
+              type="email"
+              fullWidth
+              required
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Email />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+          <div className="mb-4">
+            <TextField
+              label="Saran Anda"
+              variant="outlined"
+              multiline
+              rows={4}
+              fullWidth
+              required
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Feedback />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+          <Button
+            variant="contained"
+            color="primary"
+            type="button"
+            fullWidth
+            onClick={handleClickOpen}
+          >
+            Kirim
+          </Button>
+        </form>
+
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Konfirmasi</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Apakah Anda yakin ingin mengirim saran ini?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="secondary">
+              Batal
+            </Button>
+            <Button onClick={handleConfirm} color="primary">
+              Kirim
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity={snackbarSeverity}
+            sx={{ width: '100%' }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
       </div>
-      {showPopup && <FormsActions onCancel={handleCancel} onConfirm={handlePopupSubmit} />}
     </div>
   );
 };

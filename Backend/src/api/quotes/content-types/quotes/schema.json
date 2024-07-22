@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quotess",
+  "info": {
+    "singularName": "quotes",
+    "pluralName": "quotess",
+    "displayName": "Quotes",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Konten_Quotes": {
+      "type": "text"
+    },
+    "Penulis_Quotes": {
+      "type": "string"
+    }
+  }
+}

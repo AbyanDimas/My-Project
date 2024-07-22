@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jurusans",
+  "info": {
+    "singularName": "jurusan",
+    "pluralName": "jurusans",
+    "displayName": "Jurusan",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Judul_Jurusan": {
+      "type": "string"
+    },
+    "Deskripsi_Jurusan": {
+      "type": "text"
+    },
+    "Gambar_Jurusan": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Text_Jurusan": {
+      "type": "richtext"
+    },
+    "Penulis_Artikel": {
+      "type": "string"
+    }
+  }
+}
