@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import useFetchData from "./api"; // Import the API logic
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Pages/Home";
-import Forms from "./Pages/Forms";
+import Forms from "./Pages/Form/Forms";
 import Gallery from "./Pages/Gallery/Gallery";
-import Blogs from "./Pages/Blogs";
-import ArticleDetails from "./Pages/ArticleDetails";
+import Blogs from "./Pages/Blog/Blogs";
+import ArticleDetails from "./Pages/Blog/Artikel/ArticleDetails";
 import Jurusan from "./Pages/Jurusan/Jurusan";
 import JurusanDetail from './Pages/Jurusan/JurusanDetail';
 import StatusPage from "./Components/Popups/StatusPage";

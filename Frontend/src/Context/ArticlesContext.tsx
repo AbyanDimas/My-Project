@@ -1,6 +1,6 @@
 // src/context/ArticlesContext.tsx
 import React, { createContext, useEffect, useState, useContext } from "react";
-import { Article } from "../app/Pages/ArticleDetails"; // Import type Article
+import { Article } from "../app/Pages/Blog/Artikel/ArticleDetails"; // Import type Article
 
 export const ArticlesContext = createContext<{
   articles: Article[];

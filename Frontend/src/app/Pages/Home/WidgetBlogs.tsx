@@ -4,7 +4,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import Mood from '@mui/icons-material/Mood';
 import ThumbUp from '@mui/icons-material/ThumbUp';
 import { format, parseISO, compareDesc } from 'date-fns';
-import Skeleton from '../Skeleton'; // Import komponen Skeleton
+import Skeleton from '../../Components/Other/Skeleton'; // Import komponen Skeleton
 
 interface Article {
   id: number;
