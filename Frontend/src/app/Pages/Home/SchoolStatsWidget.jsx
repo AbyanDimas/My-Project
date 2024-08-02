@@ -1,5 +1,7 @@
 import React from 'react';
-import { School, Star, BarChart, CheckCircle, People, Person, AccessTime, Wc, Male, Female, Phone, Email, LocationOn, Build, AssignmentTurnedIn } from '@mui/icons-material';
+import {
+  School, Star, BarChart, CheckCircle, People, Person, AccessTime, Male, Female, Phone, Email, LocationOn, Build, AssignmentTurnedIn
+} from '@mui/icons-material';
 
 const SchoolStatsWidget = () => {
   const schoolInfo = {
@@ -31,10 +33,10 @@ const SchoolStatsWidget = () => {
   const iconStyles = "text-blue-500";
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className={`${cardStyles} border-t-4 border-blue-500`}>
-          <img src={schoolInfo.logo} alt="School Logo" className="h-12 w-12"/>
+          <img src={schoolInfo.logo} alt="School Logo" className="h-16 w-16 rounded-full"/>
           <div>
             <h5 className="text-lg font-bold text-gray-700">{schoolInfo.name}</h5>
           </div>

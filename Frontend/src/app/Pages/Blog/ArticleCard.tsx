@@ -7,6 +7,19 @@ import ShareIcon from '@mui/icons-material/Share';
 import SentimentSatisfied from '@mui/icons-material/SentimentSatisfied';
 import SentimentVerySatisfied from '@mui/icons-material/SentimentVerySatisfied';
 import SentimentDissatisfied from '@mui/icons-material/SentimentDissatisfied';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import RedditIcon from '@mui/icons-material/Reddit';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import { motion } from 'framer-motion';
+import { Collapse, IconButton, Tooltip } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 interface Article {
   id: number;
@@ -30,6 +43,9 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, liked, likesCount, o
   const [isClicked, setIsClicked] = useState(false);
   const [emojiIndex, setEmojiIndex] = useState(0);
   const [isShareMenuOpen, setIsShareMenuOpen] = useState(false);
+  const [showMoreOptions, setShowMoreOptions] = useState(false);
+  const [copySuccess, setCopySuccess] = useState('');
+
   const emojis = [<Mood />, <SentimentSatisfied />, <SentimentVerySatisfied />, <SentimentDissatisfied />];
 
   const handleClick = (callback: (articleId: number) => void, articleId: number) => {
@@ -46,20 +62,61 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, liked, likesCount, o
     {
       platform: 'Facebook',
       url: `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}articles/${article.id}`,
+      icon: <FacebookIcon className="text-blue-600" style={{ fontSize: 40 }} />
     },
     {
       platform: 'Twitter',
       url: `https://twitter.com/intent/tweet?url=${window.location.href}articles/${article.id}&text=${article.title}`,
+      icon: <TwitterIcon className="text-blue-400" style={{ fontSize: 40 }} />
     },
     {
       platform: 'LinkedIn',
       url: `https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}articles/${article.id}&title=${article.title}`,
+      icon: <LinkedInIcon className="text-blue-700" style={{ fontSize: 40 }} />
     },
     {
       platform: 'WhatsApp',
       url: `https://api.whatsapp.com/send?text=${article.title} ${window.location.href}articles/${article.id}`,
+      icon: <WhatsAppIcon className="text-green-600" style={{ fontSize: 40 }} />
+    },
+    {
+      platform: 'Instagram',
+      url: `https://www.instagram.com/`,
+      icon: <InstagramIcon className="text-pink-500" style={{ fontSize: 40 }} />
+    },
+    {
+      platform: 'Pinterest',
+      url: `https://www.pinterest.com/pin/create/button/?url=${window.location.href}articles/${article.id}&media=${article.imageUrl}&description=${article.title}`,
+      icon: <PinterestIcon className="text-red-600" style={{ fontSize: 40 }} />
+    },
+    {
+      platform: 'Reddit',
+      url: `https://www.reddit.com/submit?url=${window.location.href}articles/${article.id}&title=${article.title}`,
+      icon: <RedditIcon className="text-orange-500" style={{ fontSize: 40 }} />
+    },
+    {
+      platform: 'Telegram',
+      url: `https://telegram.me/share/url?url=${window.location.href}articles/${article.id}&text=${article.title}`,
+      icon: <TelegramIcon className="text-blue-500" style={{ fontSize: 40 }} />
     },
   ];
+
+  const copyToClipboard = () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(`${window.location.href}articles/${article.id}`)
+        .then(() => {
+          setCopySuccess('Link copied!');
+          setTimeout(() => setCopySuccess(''), 2000);
+        })
+        .catch((err) => {
+          setCopySuccess('Failed to copy');
+        });
+    } else {
+      setCopySuccess('Clipboard API not supported');
+      setTimeout(() => setCopySuccess(''), 2000);
+    }
+  };
+  
 
   return (
     <div key={article.id} className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -116,30 +173,92 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, liked, likesCount, o
             {emojis[emojiIndex]}
           </div>
           <div className="flex items-center space-x-1">
-            <ThumbUp
-              className={`cursor-pointer ${liked ? 'text-red-500' : 'text-gray-500 dark:text-gray-400'} hover:text-red-600 dark:hover:text-red-500`}
+            <motion.div
+              initial={{ scale: 1 }}
+              animate={{ scale: isClicked ? 1.5 : 1 }}
+              transition={{ duration: 0.2 }}
               onClick={() => handleClick(onLikeClick, article.id)}
-            />
+            >
+              <ThumbUp
+                className={`cursor-pointer ${liked ? 'text-red-500' : 'text-gray-500 dark:text-gray-400'} hover:text-red-600 dark:hover:text-red-500`}
+              />
+            </motion.div>
             <span className="text-gray-500 dark:text-gray-400">{likesCount}</span>
           </div>
           <div className="relative">
             <ShareIcon
               className="text-gray-500 dark:text-gray-400 cursor-pointer hover:text-gray-600 dark:hover:text-gray-500"
-              onClick={() => setIsShareMenuOpen(!isShareMenuOpen)}
+              onClick={() => setIsShareMenuOpen(true)}
             />
             {isShareMenuOpen && (
-              <div className="absolute top-0 left-10 mt-8 p-2 bg-white border rounded shadow-md flex flex-col space-y-2 z-10">
-                {shareOptions.map((option) => (
-                  <a
-                    key={option.platform}
-                    href={option.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
-                  >
-                    {option.platform}
-                  </a>
-                ))}
+              <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+                <div className="absolute inset-0 bg-black opacity-50" onClick={() => setIsShareMenuOpen(false)}></div>
+                <div className="relative z-10 w-full max-w-2xl mx-auto p-8 bg-white bg-opacity-80 backdrop-blur-md rounded-lg shadow-lg">
+                  <div className="grid grid-cols-4 gap-4">
+                    {shareOptions.slice(0, 4).map((option) => (
+                      <a
+                        key={option.platform}
+                        href={option.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex flex-col items-center text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
+                      >
+                        {option.icon}
+                        <span className="text-xs">{option.platform}</span>
+                      </a>
+                    ))}
+                  </div>
+                  {showMoreOptions && (
+                    <Collapse in={showMoreOptions}>
+                      <div className="grid grid-cols-4 gap-4 mt-4">
+                        {shareOptions.slice(4).map((option) => (
+                          <a
+                            key={option.platform}
+                            href={option.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex flex-col items-center text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
+                          >
+                            {option.icon}
+                            <span className="text-xs">{option.platform}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </Collapse>
+                  )}
+                  {!showMoreOptions ? (
+                    <div className="flex justify-center mt-4">
+                      <button
+                        onClick={() => setShowMoreOptions(true)}
+                        className="flex items-center text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
+                      >
+                        <ExpandMore style={{ fontSize: 40 }} />
+                        <span className="ml-2 text-xs">Lihat Lainnya</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex justify-center mt-4">
+                      <button
+                        onClick={() => setShowMoreOptions(false)}
+                        className="flex items-center text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
+                      >
+                        <ExpandLess style={{ fontSize: 40 }} />
+                        <span className="ml-2 text-xs">Sembunyikan Lagi</span>
+                      </button>
+                    </div>
+                  )}
+                  <div className="flex justify-center items-center mt-4 space-x-2">
+                    <Tooltip title="Copy link to clipboard">
+                      <IconButton onClick={copyToClipboard}>
+                        <ContentCopyIcon className="text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300" />
+                      </IconButton>
+                    </Tooltip>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{copySuccess}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {`${window.location.href}articles/${article.id}`}
+                    </span>
+                  </div>
+                </div>
               </div>
             )}
           </div>

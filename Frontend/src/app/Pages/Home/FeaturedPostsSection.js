@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
 
 const FeaturedPostsSection = () => {
   const [featuredPosts, setFeaturedPosts] = useState([]);
+  const [randomPosts, setRandomPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +23,10 @@ const FeaturedPostsSection = () => {
         }));
 
         setFeaturedPosts(fetchedPosts.slice(0, 3)); // Limit to 3 featured posts
+
+        const shuffledPosts = fetchedPosts.sort(() => 0.5 - Math.random());
+        setRandomPosts(shuffledPosts.slice(0, 5)); // Get 5 random posts
+
         setLoading(false);
       });
   }, []);
@@ -47,7 +53,9 @@ const FeaturedPostsSection = () => {
                       <div key={post.id} className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700">
                         <div className="overflow-hidden w-3/4 pr-2">
                           <p className="text-sm text-purple-800 dark:text-purple-400">{post.category}</p>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{`${day} ${month}, ${year}`}</h3>
+                          <Link to={`/articles/${post.id}`} className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:underline">
+                            {post.title}
+                          </Link>
                           <p className="text-sm text-gray-500 dark:text-gray-300 truncate">{post.content}</p>
                         </div>
                         <a href={post.link} target="_blank" rel="noopener noreferrer" className="bg-orange-500 dark:bg-orange-600 text-white px-4 py-2 rounded-md whitespace-nowrap">
@@ -61,13 +69,25 @@ const FeaturedPostsSection = () => {
           </div>
           <div className="lg:w-1/3 w-full mt-6 lg:mt-0 lg:ml-4">
             <div className="h-full p-6 border border-gray-200 dark:border-gray-700 rounded-lg bg-orange-100 dark:bg-orange-900">
-              <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">CPI Explained</h3>
-              <p className="mt-4 text-gray-700 dark:text-gray-300">
-                Why does the reported inflation differ from my personal experience?
-              </p>
-              <button className="mt-6 bg-orange-500 dark:bg-orange-600 text-white px-4 py-2 rounded-md">
-                Find out why
-              </button>
+              <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Random News</h3>
+              <div className="mt-4 space-y-4 overflow-y-auto max-h-96">
+                {loading
+                  ? <div>Loading...</div>
+                  : randomPosts.map((post) => {
+                      const { day, month, year } = formatDate(post.date);
+                      return (
+                        <div key={post.id} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700">
+                          <p className="text-sm text-purple-800 dark:text-purple-400">{post.category}</p>
+                          <Link to={`/articles/${post.id}`} className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:underline">
+                            {post.title}
+                          </Link>
+                          <p className="text-sm text-gray-500 dark:text-gray-300">{`${day} ${month}, ${year}`}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-300 truncate">{post.content}</p>
+                        </div>
+                      );
+                    })
+                }
+              </div>
             </div>
           </div>
         </div>

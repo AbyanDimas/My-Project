@@ -17,9 +17,27 @@ const AboutSection = () => {
                 Tentang Kami
               </Typography>
             </CardHeader>
-            <CardBody>
+            <CardBody className="max-h-96 overflow-y-auto">
               <Typography variant="h3" className="font-extrabold tracking-tight text-gray-900 dark:text-white">
                 SMK 1 Adiwerna Blog
+              </Typography>
+              <Typography variant="body1" className="mt-4 text-gray-500 dark:text-white">
+                Our blog is dedicated to sharing the latest news, activities, and achievements of SMK 1 Adiwerna. Stay updated with our posts!
+              </Typography>
+              <Typography variant="body1" className="mt-4 text-gray-500 dark:text-white">
+                Our blog is dedicated to sharing the latest news, activities, and achievements of SMK 1 Adiwerna. Stay updated with our posts!
+              </Typography>
+              <Typography variant="body1" className="mt-4 text-gray-500 dark:text-white">
+                Our blog is dedicated to sharing the latest news, activities, and achievements of SMK 1 Adiwerna. Stay updated with our posts!
+              </Typography>
+              <Typography variant="body1" className="mt-4 text-gray-500 dark:text-white">
+                Our blog is dedicated to sharing the latest news, activities, and achievements of SMK 1 Adiwerna. Stay updated with our posts!
+              </Typography>
+              <Typography variant="body1" className="mt-4 text-gray-500 dark:text-white">
+                Our blog is dedicated to sharing the latest news, activities, and achievements of SMK 1 Adiwerna. Stay updated with our posts!
+              </Typography>
+              <Typography variant="body1" className="mt-4 text-gray-500 dark:text-white">
+                Our blog is dedicated to sharing the latest news, activities, and achievements of SMK 1 Adiwerna. Stay updated with our posts!
               </Typography>
               <Typography variant="body1" className="mt-4 text-gray-500 dark:text-white">
                 Our blog is dedicated to sharing the latest news, activities, and achievements of SMK 1 Adiwerna. Stay updated with our posts!
