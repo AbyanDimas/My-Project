@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import ArticleIcon from '@mui/icons-material/Article';
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import SchoolIcon from '@mui/icons-material/School';
 import InfoIcon from '@mui/icons-material/Info';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 const MenuLinks = ({ closeModals }: { closeModals: () => void }) => {
   return (
@@ -27,14 +27,6 @@ const MenuLinks = ({ closeModals }: { closeModals: () => void }) => {
       >
         <ArticleIcon className="mr-1" />
         Blogs
-      </Link>
-      <Link
-        to="/forms"
-        className="block text-gray-800 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 flex items-center"
-        onClick={closeModals}
-      >
-        <AssignmentIcon className="mr-1" />
-        Forms
       </Link>
       <Link
         to="/gallery"
@@ -75,6 +67,14 @@ const MenuLinks = ({ closeModals }: { closeModals: () => void }) => {
       >
         <LocalLibraryIcon className="mr-1" />
         Fasilitas
+      </Link>
+      <Link
+        to="/forms"
+        className="block text-gray-800 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 flex items-center"
+        onClick={closeModals}
+      >
+        <AssignmentIcon className="mr-1" />
+        Forms
       </Link>
     </div>
   );

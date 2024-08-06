@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import DropdownMenu from './DropdownMenu';
 import HomeIcon from '@mui/icons-material/Home';
 import ArticleIcon from '@mui/icons-material/Article';
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import SchoolIcon from '@mui/icons-material/School';
 
@@ -15,21 +14,7 @@ const DesktopLinks = () => {
         className="text-white hover:text-blue-500 hover:bg-blue-100 transition duration-300 ease-in-out p-2 rounded-full transform active:scale-95 active:shadow-inner flex items-center"
       >
         <HomeIcon className="mr-1" />
-        Home
-      </Link>
-      <Link
-        to="/blogs"
-        className="text-white hover:text-blue-500 hover:bg-blue-100 transition duration-300 ease-in-out p-2 rounded-full transform active:scale-95 active:shadow-inner flex items-center"
-      >
-        <ArticleIcon className="mr-1" />
-        Blogs
-      </Link>
-      <Link
-        to="/forms"
-        className="text-white hover:text-blue-500 hover:bg-blue-100 transition duration-300 ease-in-out p-2 rounded-full transform active:scale-95 active:shadow-inner flex items-center"
-      >
-        <AssignmentIcon className="mr-1" />
-        Forms
+        Beranda
       </Link>
       <Link
         to="/gallery"
